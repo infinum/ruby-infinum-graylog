@@ -1,5 +1,6 @@
 require 'gelf'
 require 'infinum_graylog/version'
+require 'infinum_graylog/cleaner'
 require 'infinum_graylog/configuration'
 require 'infinum_graylog/process_action_controller'
 require 'infinum_graylog/sql_active_record'
