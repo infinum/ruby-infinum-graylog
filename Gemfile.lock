@@ -2,11 +2,15 @@ PATH
   remote: .
   specs:
     infinum_graylog (0.1.0)
+      gelf
 
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.3)
+    gelf (3.0.0)
+      json
+    json (2.1.0)
     rake (10.5.0)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
