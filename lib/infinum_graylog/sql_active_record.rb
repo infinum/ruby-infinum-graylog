@@ -18,7 +18,7 @@ module InfinumGraylog
         type: 'sql',
         request_id: event.transaction_id,
         duration: event.duration,
-        application: 'tvornica-snova-development'
+        application: configuration.application
       }
     end
 
@@ -38,6 +38,10 @@ module InfinumGraylog
       end
 
       sql
+    end
+
+    def configuration
+      InfinumGraylog.configuration
     end
   end
 end
