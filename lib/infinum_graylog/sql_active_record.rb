@@ -10,7 +10,7 @@ module InfinumGraylog
 
     def format
       return if event.payload[:statement_name].nil? && event.payload[:name].nil?
-      return if SKIPPABLE_ACTIONS.include?(event_name)
+      return if skippable_actions.include?(event_name)
 
       {
         short_message: event_name,
@@ -38,6 +38,10 @@ module InfinumGraylog
       end
 
       sql
+    end
+
+    def skippable_actions
+      SKIPPABLE_ACTIONS + configuration.skippable_sql_actions
     end
 
     def configuration

@@ -10,7 +10,7 @@ module InfinumGraylog
 
   class Configuration
     attr_accessor :application, :protocol, :level, :options, :host, :port, :skip_environments
-    attr_accessor :skip_statuses
+    attr_accessor :skip_statuses, :skippable_sql_actions
 
     def initialize
       @application = "#{Rails.application.class.parent_name.underscore}-#{Rails.env}"
@@ -27,6 +27,7 @@ module InfinumGraylog
       @port = 12201 # rubocop:disable NumericLiterals
       @skip_environments = ['development', 'test']
       @skip_statuses = [404, 500]
+      @skippable_sql_actions = []
     end
   end
 end

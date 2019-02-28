@@ -22,6 +22,7 @@ Create `config/initializers/infinum_graylog.rb`
 InfinumGraylog.configure do |config|
   # config.skip_environments = ['development', 'test']
   # config.skip_statuses = [404, 500]
+  # config.skippable_sql_actions = ['PhrasingPhrase Load', 'PhrasingImage Load']
 end
 
 InfinumGraylog::Subscriber.subscribe
