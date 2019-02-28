@@ -40,7 +40,7 @@ module InfinumGraylog
       return nil unless event.payload[:headers]
       headers = {}
 
-      event.payload[:headers].each_pair do |key, value|
+      event.payload[:headers].each do |key, value|
         if key.to_s.start_with?("HTTP_")
           header_key = key[5..-1]
         elsif ["CONTENT_TYPE", "CONTENT_LENGTH"].include?(key)

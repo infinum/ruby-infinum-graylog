@@ -8,12 +8,22 @@ module InfinumGraylog
     end
 
     def notify(payload)
-      @notifier.notify!(payload)
+      payload = payload.merge(request_id: request_id)
+      Thread.new { @notifier.notify!(payload) }.join
+    end
+
+    def thread_key
+      @thread_key ||= "infinum_graylog_notifier:#{object_id}"
     end
 
     def self.notify(payload)
-      return unless payload.present?
+      return if payload.blank?
+
       instance.notify(payload)
+    end
+
+    def self.request_id=(request_id)
+      Thread.current[instance.thread_key] = request_id
     end
 
     private
@@ -21,13 +31,16 @@ module InfinumGraylog
     def options
       {
         protocol: configuration.protocol,
-        level: configuration.level,
+        level: configuration.level
       }.merge(configuration.options)
     end
 
     def configuration
-      InfinumGraylog.configuration
+      @configuration ||= InfinumGraylog.configuration
+    end
+
+    def request_id
+      Thread.current[thread_key] || SecureRandom.hex
     end
   end
 end
-
