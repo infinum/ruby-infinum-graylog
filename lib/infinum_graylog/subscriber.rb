@@ -21,7 +21,7 @@ module InfinumGraylog
       tls_configuration = InfinumGraylog.configuration.options[:tls]
 
       tls_configuration.present? &&
-        File.exist?(tls_configuration[:cert]) && File.exist?(tls_configuration[:key])
+        File.exist?(tls_configuration['cert']) && File.exist?(tls_configuration['key'])
     end
   end
 end

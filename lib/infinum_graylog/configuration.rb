@@ -18,8 +18,9 @@ module InfinumGraylog
       @level = GELF::Levels::INFO
       @options = {
         tls: {
-          cert: '/etc/ssl/private/graylog/graylog.crt',
-          key: '/etc/ssl/private/graylog/graylog.key'
+          'cert' => '/etc/ssl/private/graylog/graylog.crt',
+          'key' => '/etc/ssl/private/graylog/graylog.key',
+          'all_ciphers' => true
         }
       }
       @host = 'dreznik.infinum.co'
