@@ -29,6 +29,16 @@ InfinumGraylog::Subscriber.subscribe
 
 ```
 
+If you want additional information for action processing you can add this to your controllers:
+
+```ruby
+  def append_info_to_payload(payload)
+    super
+    payload[:user] = current_user.email if current_user.present?
+    payload[:response] = response.body if request.format == :json
+  end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
