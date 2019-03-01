@@ -13,7 +13,7 @@ module InfinumGraylog
 
       ActiveSupport::Notifications.subscribe 'sql.active_record' do |*args|
         event = ActiveSupport::Notifications::Event.new(*args)
-        Notifier.notify(SqlActiveRecord.new(event).format)
+        Notifier.notify(SqlActiveRecord.new(event, caller).format)
       end
     end
 

@@ -2,10 +2,11 @@ module InfinumGraylog
   class SqlActiveRecord
     SKIPPABLE_ACTIONS = ['SCHEMA', 'ActiveRecord::SchemaMigration Load', 'CACHE']
 
-    attr_reader :event
+    attr_reader :event, :trace
 
-    def initialize(event)
+    def initialize(event, trace)
       @event = event
+      @trace = trace
     end
 
     def format
@@ -16,9 +17,9 @@ module InfinumGraylog
         short_message: event_name,
         sql: sql,
         type: 'sql',
-        request_id: event.transaction_id,
         duration: event.duration,
-        application: configuration.application
+        application: configuration.application,
+        trace: Rails.backtrace_cleaner.clean(trace)
       }
     end
 
