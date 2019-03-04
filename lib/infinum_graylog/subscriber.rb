@@ -15,6 +15,8 @@ module InfinumGraylog
         event = ActiveSupport::Notifications::Event.new(*args)
         Notifier.notify(SqlActiveRecord.new(event, caller).format)
       end
+
+      yield if block_given?
     end
 
     def self.tls_and_files_exist?
