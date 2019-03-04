@@ -8,6 +8,15 @@ module InfinumGraylog
     yield(configuration)
   end
 
+  def self.can_subscribe?
+    return false if configuration.skip_environments.include?(Rails.env)
+
+    tls_configuration = configuration.options[:tls]
+
+    tls_configuration.present? &&
+      File.exist?(tls_configuration['cert']) && File.exist?(tls_configuration['key'])
+  end
+
   class Configuration
     attr_accessor :application, :protocol, :level, :options, :host, :port, :skip_environments
     attr_accessor :skip_statuses, :skippable_sql_actions

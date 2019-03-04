@@ -1,8 +1,7 @@
 module InfinumGraylog
   class Subscriber
     def self.subscribe
-      return unless tls_and_files_exist?
-      return if InfinumGraylog.configuration.skip_environments.include?(Rails.env)
+      return unless InfinumGraylog.can_subscribe?
 
       puts '[InfinumGraylog] notifications configured'
 
@@ -17,13 +16,6 @@ module InfinumGraylog
       end
 
       yield if block_given?
-    end
-
-    def self.tls_and_files_exist?
-      tls_configuration = InfinumGraylog.configuration.options[:tls]
-
-      tls_configuration.present? &&
-        File.exist?(tls_configuration['cert']) && File.exist?(tls_configuration['key'])
     end
   end
 end
