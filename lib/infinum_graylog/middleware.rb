@@ -6,7 +6,7 @@ module InfinumGraylog
 
     def call(env)
       request = ActionDispatch::Request.new(env)
-      InfinumGraylog::Notifier.request_id = request.request_id
+      InfinumGraylog::Notifier.request_id = request.uuid
       @app.call(env)
     end
   end

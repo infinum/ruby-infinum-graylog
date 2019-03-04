@@ -40,7 +40,7 @@ module InfinumGraylog
     end
 
     def request_id
-      Thread.current[thread_key] || SecureRandom.hex
+      Thread.current[thread_key]
     end
   end
 end

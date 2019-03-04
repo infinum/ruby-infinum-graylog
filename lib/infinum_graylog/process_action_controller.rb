@@ -12,7 +12,6 @@ module InfinumGraylog
       {
         short_message: event_name,
         type: 'action_controller',
-        request_id: event.transaction_id,
         duration: event.duration,
         application: configuration.application,
         status: event_status,
