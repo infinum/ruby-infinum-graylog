@@ -19,7 +19,7 @@ module InfinumGraylog
 
   class Configuration
     attr_accessor :application, :protocol, :level, :options, :host, :port, :skip_environments
-    attr_accessor :skip_statuses, :skippable_sql_actions
+    attr_accessor :skip_statuses, :skippable_sql_actions, :types
 
     def initialize
       @application = "#{Rails.application.class.parent_name.underscore}-#{Rails.env}"
@@ -37,6 +37,7 @@ module InfinumGraylog
       @skip_environments = ['development', 'test']
       @skip_statuses = [404, 500]
       @skippable_sql_actions = []
+      @types = [:sql, :request]
     end
   end
 end

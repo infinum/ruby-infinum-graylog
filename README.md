@@ -23,6 +23,7 @@ InfinumGraylog.configure do |config|
   # config.skip_environments = ['development', 'test']
   # config.skip_statuses = [404, 500]
   # config.skippable_sql_actions = ['PhrasingPhrase Load', 'PhrasingImage Load']
+  # config.types = [:sql, :request]
 end
 
 InfinumGraylog::Subscriber.subscribe
