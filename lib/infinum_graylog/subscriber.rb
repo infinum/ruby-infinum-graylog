@@ -3,8 +3,6 @@ module InfinumGraylog
     def self.subscribe
       return unless InfinumGraylog.can_subscribe?
 
-      puts '[InfinumGraylog] notifications configured'
-
       ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |*args|
         event = ActiveSupport::Notifications::Event.new(*args)
         Notifier.notify(ProcessActionController.new(event).format)
